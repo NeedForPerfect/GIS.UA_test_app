@@ -14,6 +14,13 @@ body {
   src: url('assets/Muli-VariableFont_wght.ttf') format('truetype');
 }
 
+ul {
+  list-style: none;
+  li {
+    outline: none;
+  }
+}
+
 h1,
 h2,
 h3,
@@ -115,4 +122,8 @@ span {
 
 .user-select-none {
   user-select: none;
+}
+
+.font-weight-bold {
+  font-weight: 500;
 }

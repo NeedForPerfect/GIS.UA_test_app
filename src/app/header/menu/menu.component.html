@@ -1,1 +1,5 @@
-<p>menu works!</p>
+<ul class="suppliers-menu flex-center-vertical flex-left">
+  <li class="user-select-none c-pointer font-weight-bold color-gray-1" *ngFor="let link of menuLinks" [routerLink]="link.link">
+    {{ link.title }}
+  </li>
+</ul>
