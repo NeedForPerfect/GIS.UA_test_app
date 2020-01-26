@@ -14,6 +14,13 @@ body {
   src: url('assets/Muli-VariableFont_wght.ttf') format('truetype');
 }
 
+ul {
+  list-style: none;
+  li {
+    outline: none;
+  }
+}
+
 h1,
 h2,
 h3,
@@ -32,16 +39,20 @@ span {
 
 @each $name, $value in $color-map {
   .color-#{$name} {
-    color: $value;
+    color: $value; // text-color classes for each color in Palette
   }
   .bg-#{$name} {
-    background-color: $value;
+    background-color: $value; // background-color classes for each color Palette
   }
 }
 
 @each $size in $sizes {
-  //generate classes .p-left-10 { padding-left: 10px; } or .m-h-10 { margin: 0 10px; } from 10 to 40 see variables
+  // generate classes .p-left-10 { padding-left: 10px; } or .m-h-10 { margin: 0 10px; } from 10 to 40.  *see variables.scss
+  // https://sass-lang.com/documentation/modules/map
+  // https://sass-lang.com/documentation/at-rules/control/each
   @each $side in $sides {
+     
+    // padding classes
     .p-#{$side}-#{$size} {
       @if $side == 'h' {
         padding: 0 #{$size}px;
@@ -53,6 +64,7 @@ span {
         padding-#{$side}: #{$size}px;
       }
     }
+    // margin classes
     .m-#{$side}-#{$size} {
       @if $side == 'h' {
         margin: 0 #{$size}px;
@@ -115,4 +127,8 @@ span {
 
 .user-select-none {
   user-select: none;
+}
+
+.font-weight-bold {
+  font-weight: 500;
 }

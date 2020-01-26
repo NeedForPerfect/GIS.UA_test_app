@@ -1,0 +1,13 @@
+@import './../../../assets/variables.scss';
+
+.suppliers-menu {
+    li {
+        margin-right: 50px;
+        padding-bottom: 7px;
+        border-bottom: 3px solid white;
+        &.active {
+            border-bottom: 3px solid map-get($color-map, red-1);
+        }
+    }
+}
+
