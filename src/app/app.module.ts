@@ -11,7 +11,6 @@ import { AccessDeniedComponent } from './access-denied/access-denied.component';
 import { MenuComponent } from './header/menu/menu.component';
 import { ContactsComponent } from './contacts/contacts.component';
 import { AboutComponent } from './about/about.component';
-import { HoverActiveDirective } from './derectives/hover-active.directive';
 
 const routes: Routes = [
   { path: '', component: SuppliersListComponent },
@@ -30,8 +29,7 @@ const routes: Routes = [
     AccessDeniedComponent,
     MenuComponent,
     ContactsComponent,
-    AboutComponent,
-    HoverActiveDirective
+    AboutComponent
   ],
   imports: [BrowserModule, BrowserAnimationsModule, RouterModule.forRoot(routes)],
   providers: [],
