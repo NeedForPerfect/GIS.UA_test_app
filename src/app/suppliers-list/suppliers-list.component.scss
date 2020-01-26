@@ -1,0 +1,11 @@
+@import '../../assets/variables.scss';
+
+.suppliers-header {
+    border-bottom: 1px solid map-get($color-map, gray-1);
+    padding-bottom: 10px;
+}
+
+.btn-create-new {
+    border: 1px solid map-get($color-map, gray-1);
+    border-radius: 8px;
+}

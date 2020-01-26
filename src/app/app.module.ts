@@ -11,6 +11,9 @@ import { AccessDeniedComponent } from './access-denied/access-denied.component';
 import { MenuComponent } from './header/menu/menu.component';
 import { ContactsComponent } from './contacts/contacts.component';
 import { AboutComponent } from './about/about.component';
+import { MatButtonModule } from '@angular/material/button';
+import { MatTableModule } from '@angular/material/table';
+import { MatSortModule } from '@angular/material/sort';
 
 const routes: Routes = [
   { path: '', component: SuppliersListComponent },
@@ -31,7 +34,14 @@ const routes: Routes = [
     ContactsComponent,
     AboutComponent
   ],
-  imports: [BrowserModule, BrowserAnimationsModule, RouterModule.forRoot(routes)],
+  imports: [
+    BrowserModule,
+    BrowserAnimationsModule,
+    RouterModule.forRoot(routes),
+    MatButtonModule,
+    MatTableModule,
+    MatSortModule
+  ],
   providers: [],
   bootstrap: [AppComponent]
 })

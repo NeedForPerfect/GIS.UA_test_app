@@ -1,3 +1,53 @@
-<div>
-    Lorem ipsum dolor sit amet consectetur adipisicing elit. Fugit deleniti nesciunt totam excepturi voluptas labore eum! Esse magni consequatur soluta nemo beatae laborum culpa, delectus quidem. Facilis at modi rerum porro nostrum. Nam, vitae. Iusto illo culpa magnam corrupti quidem reiciendis optio facere, delectus deserunt. Veritatis, hic aut velit reiciendis fugit odit consequuntur unde ullam modi culpa rerum eaque sequi nihil quidem officiis cum repudiandae dignissimos, fuga doloribus laudantium ea nesciunt. Molestiae magni dolorum nostrum eos facere enim vero dolor officia corporis sit eaque, libero et quasi expedita nisi, odio, quibusdam illo dignissimos minus rerum modi commodi! Ex aliquid rerum reprehenderit consequuntur ea inventore earum nobis id exercitationem ipsa deleniti quasi commodi amet nihil recusandae temporibus ipsam dignissimos quod, quae accusamus necessitatibus aperiam dolore! Consequatur dignissimos, saepe ipsam repudiandae culpa fuga ab. Aperiam necessitatibus dicta sed. Quos inventore reprehenderit, tenetur, quis, deserunt dolorem doloremque recusandae maiores non exercitationem quia. Eos explicabo corporis, consequatur nam dicta optio autem possimus minima, adipisci temporibus reprehenderit eligendi natus dolorum sint animi architecto ut cumque? Sequi explicabo qui non natus quae? Omnis adipisci ab maxime ratione doloremque repellendus labore iste quos voluptas quia eum itaque similique, rem vitae, veniam, corporis ullam ipsa at ad fuga!
+<div class="suppliers-header flex-center-vertical flex-left m-bottom-15">
+  <i class="material-icons color-gray-1 text-40 m-right-30">
+    insert_chart
+  </i>
+  <h2 class="color-gray-1">Suppliers</h2>
 </div>
+<div class="flex-rigth">
+  <button
+    mat-button
+    class="btn-create-new m-bottom-15"
+  >
+    <i class="material-icons color-gray-1">
+      add
+    </i>
+    <span class="color-gray-1">Create new</span>
+  </button>
+</div>
+
+<table mat-table matSort [dataSource]="dataSource" class="w-100 m-top-30">
+
+    <ng-container matColumnDef="ggn">
+      <th mat-header-cell *matHeaderCellDef> GGN </th>
+      <td mat-cell *matCellDef="let element"> {{element.ggn}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="name">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header="name"> Name </th>
+        <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="country">
+        <th mat-header-cell *matHeaderCellDef> Country </th>
+        <td mat-cell *matCellDef="let element"> {{element.country}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="roles">
+        <th mat-header-cell *matHeaderCellDef> Roles </th>
+        <td mat-cell *matCellDef="let element"> {{element.roles}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="sector">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Sector </th>
+        <td mat-cell *matCellDef="let element"> {{element.sector}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="button">
+        <th mat-header-cell *matHeaderCellDef></th>
+        <td mat-cell *matCellDef="let element"> edit btn </td>
+    </ng-container>
+    
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  </table>
