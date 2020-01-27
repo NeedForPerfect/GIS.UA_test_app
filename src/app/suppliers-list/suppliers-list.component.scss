@@ -9,3 +9,29 @@
     border: 1px solid map-get($color-map, gray-1);
     border-radius: 8px;
 }
+
+.suppliers-list {
+    tr {
+        &:nth-child(2n) {
+            td {
+                background-color: map-get($color-map, gray-3);
+            }
+        }
+        &:hover {
+            td {
+                background-color: map-get($color-map, gray-2);
+            }
+        }
+        td {
+            padding: 25px 0;
+            transition: all ease-out 0.11s;
+            user-select: none;
+            cursor: pointer;
+        }
+    }
+}
+
+.paginator-centered {
+    display: flex;
+    justify-content: center;
+}

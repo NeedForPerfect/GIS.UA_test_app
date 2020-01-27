@@ -18,7 +18,7 @@
 
 test auto deploy
 
-<table mat-table matSort [dataSource]="dataSource" class="w-100 m-top-30">
+<table mat-table matSort [dataSource]="dataSource" class="w-100 m-top-30 suppliers-list">
 
     <ng-container matColumnDef="ggn">
       <th mat-header-cell *matHeaderCellDef> GGN </th>
@@ -53,3 +53,5 @@ test auto deploy
     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
     <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
   </table>
+
+  <mat-paginator [pageSizeOptions]="[10, 20]" class="paginator-centered" showFirstLastButtons></mat-paginator>

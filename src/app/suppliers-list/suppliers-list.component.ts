@@ -2,6 +2,8 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { Supplier } from '../models/models';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
+import { HttpClient } from '@angular/common/http';
+import { MatPaginator } from '@angular/material/paginator';
 
 @Component({
   selector: 'app-suppliers-list',
@@ -10,8 +12,9 @@ import { MatTableDataSource } from '@angular/material/table';
 })
 export class SuppliersListComponent implements OnInit {
 
-  displayedColumns = ['ggn', 'name', 'country', 'roles', 'sector'];
+  displayedColumns = ['ggn', 'name', 'country', 'roles', 'sector', 'button'];
   @ViewChild(MatSort, {static: true}) sort: MatSort;
+  @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
 
   suppliers: Supplier[] = [
     {id: '644664668-4646864-dawd', ggn: '5768495061445', name: 'Agricola Selecta Berries', country: 'Spain', roles: 'Primary producer', sector: 'asomeText' },
@@ -29,10 +32,14 @@ export class SuppliersListComponent implements OnInit {
     {id: '644664668-4646864-dawd', ggn: '5768495061445', name: 'MAgricola Selecta Berries', country: 'Spain', roles: 'Primary producer', sector: 'Strawberries' }
   ];
 
-  dataSource = new MatTableDataSource(this.suppliers);
+  dataSource: MatTableDataSource<Supplier>;
+
+  constructor(private http: HttpClient) {}
 
   ngOnInit() {
-    this.dataSource.sort = this.sort;
+    this.dataSource = new MatTableDataSource(this.suppliers);
+    this.dataSource.paginator = this.paginator;
+
   }
 
 

@@ -14,6 +14,8 @@ import { AboutComponent } from './about/about.component';
 import { MatButtonModule } from '@angular/material/button';
 import { MatTableModule } from '@angular/material/table';
 import { MatSortModule } from '@angular/material/sort';
+import { HttpClientModule } from '@angular/common/http';
+import { MatPaginatorModule } from '@angular/material/paginator';
 
 const routes: Routes = [
   { path: '', component: SuppliersListComponent },
@@ -40,7 +42,9 @@ const routes: Routes = [
     RouterModule.forRoot(routes),
     MatButtonModule,
     MatTableModule,
-    MatSortModule
+    MatSortModule,
+    HttpClientModule,
+    MatPaginatorModule
   ],
   providers: [],
   bootstrap: [AppComponent]
