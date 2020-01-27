@@ -20,8 +20,8 @@ import { environment } from '../environments/environment'
 import { SuppliersService } from './services/suppliers.service';
 import { EffectsModule } from '@ngrx/effects';
 import { StoreModule } from '@ngrx/store';
-import { SuppliersEffects } from './store/effects';
-import { suppliersReducer, SpReducer } from './store/reducer';
+import { rootStore } from './store';
+import { AsyncPipe } from '@angular/common';
 
 const routes: Routes = [
   { path: '', component: SuppliersListComponent },
@@ -51,9 +51,9 @@ const routes: Routes = [
     MatSortModule,
     HttpClientModule,
     MatPaginatorModule,
-    EffectsModule.forRoot([SuppliersEffects]),
+    EffectsModule.forRoot([rootStore.SuppliersEffects]),
     StoreModule.forRoot({
-      SuppliersState: SpReducer
+      SuppliersState: rootStore.SpReducer
     }),
   ],
   providers: [

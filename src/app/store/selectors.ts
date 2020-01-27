@@ -1,17 +1,34 @@
 import { createSelector } from '@ngrx/store';
 import { SuppliersState } from './reducer';
+import { first } from 'rxjs/operators';
 import { Supplier } from '../models/models';
 
-export const selectFeature = (state: SuppliersState) => {
-    console.log('First Step');
-    return state.suppliers;
+const getError = (state: SuppliersState): string => state.error;
+const getSelectedData = (state: SuppliersState): any => {
+  console.log(state)
+  return state.suppliers;
 };
+const getLoading = (state: SuppliersState): any => state.loading;
 
-export const suppliersCount =
-  createSelector(
-    selectFeature,
-    (state, props) => {
-        console.log('Second Step');
-        return state;
-    }
-  );
+const getLloading = createSelector(
+  (state: any) => {
+    console.log('GET LOADING', state);
+    return state.SuppliersState
+  },
+  getLoading
+);
+
+const getSuppliers = createSelector(
+  (state: {SuppliersState: SuppliersState}) => {
+    console.log('FirstSel', state);
+    return state.SuppliersState;
+  },
+  getSelectedData
+);
+
+const selectCombined = createSelector(
+  (store: {SuppliersState: SuppliersState}) => store.SuppliersState,
+  getSelectedData
+)
+
+export { getLloading, getSuppliers, selectCombined};

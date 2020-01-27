@@ -4,10 +4,9 @@ import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatPaginator } from '@angular/material/paginator';
 import { SuppliersService } from '../services/suppliers.service';
+import { Store } from '@ngrx/store';
+import { rootStore } from '../store';
 import { SuppliersState } from '../store/reducer';
-import { Store, select } from '@ngrx/store';
-import { ApiGetSuppliers } from '../store/actions';
-import { suppliersCount } from '../store/selectors';
 
 @Component({
   selector: 'app-suppliers-list',
@@ -23,39 +22,36 @@ export class SuppliersListComponent implements OnInit {
 
   dataSource: MatTableDataSource<Supplier>;
 
-  $count;
 
   constructor(
-    private suppliersService: SuppliersService,
-    private store: Store<SuppliersState>
+    private store: Store<{ SuppliersState: SuppliersState }>
     ) {}
 
   ngOnInit() {
-    this.suppliersService.getSuppliers().subscribe((res: Supplier[]) => {
-      this.suppliers = res;
-      this.dataSource = new MatTableDataSource(this.suppliers);
-      this.dataSource.paginator = this.paginator;
+
+    this.store.dispatch(rootStore.ApiGetSuppliers());
+
+    this.store.select(rootStore.getLloading).subscribe( l => {
+      console.log('Loading', l)
     });
-
-    // this.store.pipe(select(suppliersCount())).subscribe((second) => {
-    //   console.log('Second Variant', second);
-    // })
-
-    //this.$count = this.store.pipe(select(suppliersCount));
-
-    this.store.subscribe((store) => {
-      console.log('Store', store);
+    this.store.select(rootStore.getSuppliers).subscribe( rt => {
+       this.suppliers = rt;
+        this.dataSource = new MatTableDataSource(this.suppliers);
+       this.dataSource.paginator = this.paginator;
     });
 
   }
 
 
   subscripeState() {
-    this.$count = this.store.select(suppliersCount, null);
+    // this.store.select(rootStore.suppliersCount, null).subscribe((se) => {
+    //   console.log('Selects Works', se);
+    // });
+  //  this.$count = this.store.pipe(select(rootStore.suppliersCount));
   }
 
   getSuppliers() {
-    this.store.dispatch(ApiGetSuppliers());
+    this.store.dispatch(rootStore.ApiGetSuppliers());
   }
 
 }
