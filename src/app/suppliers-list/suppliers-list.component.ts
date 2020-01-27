@@ -2,9 +2,12 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { Supplier } from '../models/models';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
-import { HttpClient } from '@angular/common/http';
 import { MatPaginator } from '@angular/material/paginator';
 import { SuppliersService } from '../services/suppliers.service';
+import { SuppliersState } from '../store/reducer';
+import { Store, select } from '@ngrx/store';
+import { ApiGetSuppliers } from '../store/actions';
+import { suppliersCount } from '../store/selectors';
 
 @Component({
   selector: 'app-suppliers-list',
@@ -20,7 +23,12 @@ export class SuppliersListComponent implements OnInit {
 
   dataSource: MatTableDataSource<Supplier>;
 
-  constructor(private suppliersService: SuppliersService) {}
+  $count;
+
+  constructor(
+    private suppliersService: SuppliersService,
+    private store: Store<SuppliersState>
+    ) {}
 
   ngOnInit() {
     this.suppliersService.getSuppliers().subscribe((res: Supplier[]) => {
@@ -28,6 +36,26 @@ export class SuppliersListComponent implements OnInit {
       this.dataSource = new MatTableDataSource(this.suppliers);
       this.dataSource.paginator = this.paginator;
     });
-    
+
+    // this.store.pipe(select(suppliersCount())).subscribe((second) => {
+    //   console.log('Second Variant', second);
+    // })
+
+    //this.$count = this.store.pipe(select(suppliersCount));
+
+    this.store.subscribe((store) => {
+      console.log('Store', store);
+    });
+
   }
+
+
+  subscripeState() {
+    this.$count = this.store.select(suppliersCount, null);
+  }
+
+  getSuppliers() {
+    this.store.dispatch(ApiGetSuppliers());
+  }
+
 }

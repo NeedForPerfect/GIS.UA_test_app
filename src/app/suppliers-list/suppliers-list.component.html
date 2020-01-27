@@ -16,7 +16,13 @@
   </button>
 </div>
 
-test auto deploy
+
+{{ $count | async }}
+
+
+<p (click)="getSuppliers()">Get Suppliers</p>
+
+<p (click)="subscripeState()">Select</p>
 
 <table mat-table matSort [dataSource]="dataSource" class="w-100 m-top-30 suppliers-list">
 

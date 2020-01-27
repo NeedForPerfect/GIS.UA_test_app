@@ -18,6 +18,10 @@ import { HttpClientModule } from '@angular/common/http';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { environment } from '../environments/environment'
 import { SuppliersService } from './services/suppliers.service';
+import { EffectsModule } from '@ngrx/effects';
+import { StoreModule } from '@ngrx/store';
+import { SuppliersEffects } from './store/effects';
+import { suppliersReducer, SpReducer } from './store/reducer';
 
 const routes: Routes = [
   { path: '', component: SuppliersListComponent },
@@ -46,7 +50,11 @@ const routes: Routes = [
     MatTableModule,
     MatSortModule,
     HttpClientModule,
-    MatPaginatorModule
+    MatPaginatorModule,
+    EffectsModule.forRoot([SuppliersEffects]),
+    StoreModule.forRoot({
+      SuppliersState: SpReducer
+    }),
   ],
   providers: [
     { provide: 'BASE_API_URL', useValue: (<any>environment).local_rest_api_server },
