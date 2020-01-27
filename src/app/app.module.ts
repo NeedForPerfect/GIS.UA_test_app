@@ -16,6 +16,8 @@ import { MatTableModule } from '@angular/material/table';
 import { MatSortModule } from '@angular/material/sort';
 import { HttpClientModule } from '@angular/common/http';
 import { MatPaginatorModule } from '@angular/material/paginator';
+import { environment } from '../environments/environment'
+import { SuppliersService } from './services/suppliers.service';
 
 const routes: Routes = [
   { path: '', component: SuppliersListComponent },
@@ -46,7 +48,10 @@ const routes: Routes = [
     HttpClientModule,
     MatPaginatorModule
   ],
-  providers: [],
+  providers: [
+    { provide: 'BASE_API_URL', useValue: (<any>environment).local_rest_api_server },
+    SuppliersService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule {}
