@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { AccessDeniedComponent } from './access-denied.component';
+import { UnsubsribedComponent } from './unsubsribed.component';
 
-describe('AccessDeniedComponent', () => {
-  let component: AccessDeniedComponent;
-  let fixture: ComponentFixture<AccessDeniedComponent>;
+describe('UnsubsribedComponent', () => {
+  let component: UnsubsribedComponent;
+  let fixture: ComponentFixture<UnsubsribedComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ AccessDeniedComponent ]
+      declarations: [ UnsubsribedComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(AccessDeniedComponent);
+    fixture = TestBed.createComponent(UnsubsribedComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

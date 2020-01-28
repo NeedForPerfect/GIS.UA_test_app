@@ -16,6 +16,7 @@ export class EditSupplierComponent implements OnInit {
 
   role = new FormControl('');
   roles: string[] = [];
+  editedSupplier: Supplier;
 
   constructor(private fb: FormBuilder, private store: Store<{ SuppliersState: SuppliersState }>) {}
 
@@ -54,4 +55,10 @@ export class EditSupplierComponent implements OnInit {
     supplier.roles = this.roles;
     this.store.dispatch(rootStore.ApiAddSupplier()({supplier}));
   }
+
+  get title() {
+    return this.editMode ? this.editedSupplier.name : 'Add new supplier';
+    
+  }
+
 }
