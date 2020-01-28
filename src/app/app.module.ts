@@ -25,6 +25,7 @@ import { UnsubsribedComponent } from './shared/unsubsribed/unsubsribed.component
 import {MatProgressBarModule} from '@angular/material/progress-bar';
 import {MatInputModule} from '@angular/material/input';
 import { AcceptModalComponent } from './shared/accept-modal/accept-modal.component';
+import {MatDialogModule} from '@angular/material/dialog';
 
 const routes: Routes = [
   { path: '', component: SuppliersListComponent },
@@ -62,8 +63,10 @@ const routes: Routes = [
     }),
     ReactiveFormsModule,
     MatProgressBarModule,
-    MatInputModule
+    MatInputModule,
+    MatDialogModule
   ],
+  entryComponents: [AcceptModalComponent],
   providers: [
     { provide: 'BASE_API_URL', useValue: (<any>environment).local_rest_api_server },
     SuppliersService

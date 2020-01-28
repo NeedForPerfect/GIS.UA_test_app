@@ -18,6 +18,7 @@ const API_DELETE_SUPPLIER = '[SUPPLIERS_PAGE] DELETE supplier in database';
 const API_DELETE_SUPPLIER_SUCCESS = '[SUPPLIERS_PAGE] DELETE supplier in database SUCCESS';
 //API REQUESTS STATUS
 const API_ERROR = '[API_STATUS] API request error';
+const API_ERROR_CLEAR = '[API_STATUS] clrear API request error';
 
 const CLEAR_SELECTED_SUPPLIER = '[API_STATUS] clear selected supplier';
 
@@ -55,6 +56,8 @@ export function ApiDeleteSupplierSuccess(): any { return _ApiDeleteSupplierSucce
 // these will be dispatched by the Effect result
 export const _ApiError = createAction(API_ERROR, props<{ error: any }>());
 export function ApiError(): any { return _ApiError; }
+export const _ApiErrorClear = createAction(API_ERROR_CLEAR, props<{ error: any }>());
+export function ApiErrorClear(): any { return _ApiErrorClear; }
 
 export const _StoreClrearSelectedSupplier = createAction(CLEAR_SELECTED_SUPPLIER);
 export function StoreClrearSelectedSupplier(): any { return _StoreClrearSelectedSupplier; }

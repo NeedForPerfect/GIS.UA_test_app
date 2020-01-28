@@ -7,8 +7,9 @@ import { Store, select } from '@ngrx/store';
 import { rootStore } from '../store';
 import { SuppliersState } from '../store/reducer';
 import { UnsubsribedComponent } from '../shared/unsubsribed/unsubsribed.component';
-import { ApiGetSupplierDetail } from '../store/actions';
 import { Router } from '@angular/router';
+import { MatDialog } from '@angular/material/dialog';
+import { AcceptModalComponent } from '../shared/accept-modal/accept-modal.component';
 
 @Component({
   selector: 'app-suppliers-list',
@@ -24,7 +25,7 @@ export class SuppliersListComponent extends UnsubsribedComponent implements OnIn
   loading;
   dataSource: MatTableDataSource<Supplier>;
 
-  constructor(private store: Store<{ SuppliersState: SuppliersState }>, private router: Router) {
+  constructor(private store: Store<{ SuppliersState: SuppliersState }>, private router: Router, private modal: MatDialog) {
     super();
   }
 
@@ -44,6 +45,16 @@ export class SuppliersListComponent extends UnsubsribedComponent implements OnIn
 
   editSupplier(supllier: Supplier) {
     this.router.navigate(['edit-supplier', supllier._id]);
+  }
+
+  deleteSupplierSuccess(supplier: Supplier) {
+    const acceptModal = this.modal.open(AcceptModalComponent, { data: {
+      title: 'Are you sure want to delete ' + supplier.name
+    } });
+    const modalSubscription = acceptModal.afterClosed().subscribe((res) => {
+      if (res) { this.deleteSupplier(supplier) };
+      modalSubscription.unsubscribe();
+    });
   }
 
   deleteSupplier(supplier: Supplier) {

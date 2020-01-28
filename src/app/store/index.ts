@@ -9,11 +9,12 @@ import {
     ApiDeleteSupplier,
     ApiDeleteSupplierSuccess,
     ApiError,
-    StoreClrearSelectedSupplier
+    StoreClrearSelectedSupplier,
+    ApiErrorClear
   } from './actions';
   import { SuppliersEffects } from './effects';
 import { SpReducer } from './reducer';
-import { getSuppliers, getLloading, getSupplier } from './selectors';
+import { getSuppliers, getLloading, getSupplier, getError } from './selectors';
 
 export const rootStore = {
     ApiGetSuppliers,
@@ -31,5 +32,7 @@ export const rootStore = {
     getSuppliers,
     getLloading,
     getSupplier,
-    StoreClrearSelectedSupplier
+    getError,
+    StoreClrearSelectedSupplier,
+    ApiErrorClear
 };

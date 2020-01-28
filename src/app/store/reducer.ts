@@ -11,7 +11,8 @@ import {
   ApiEditSupplier,
   ApiEditSupplierSuccess,
   ApiDeleteSupplier,
-  ApiDeleteSupplierSuccess
+  ApiDeleteSupplierSuccess,
+  ApiErrorClear
 } from './actions';
 import { Supplier } from '../models/models';
 
@@ -66,6 +67,9 @@ export const suppliersReducer = createReducer(
   on(StoreClrearSelectedSupplier(), (state, action) => ({ ...state, selectedSupplier: null })),
   on(ApiError(), (state, action) => {
     return { ...state, loading: false, error: action.error };
+  }),
+  on(ApiErrorClear(), (state, action) => {
+    return { ...state, loading: false, error: null };
   })
 );
 

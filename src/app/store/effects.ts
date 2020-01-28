@@ -55,7 +55,7 @@ export class SuppliersEffects {
         map(supplier => {
           return ApiEditSupplierSuccess()({supplier});
         }),
-        catchError(() => of(ApiError()()))
+        catchError((e) => of(ApiError()(e)))
       )),
       tap((res) => { this.store.dispatch(ApiGetSuppliers()()) })
     )
@@ -68,7 +68,7 @@ export class SuppliersEffects {
         map(supplier => {
           return ApiDeleteSupplierSuccess()({id: supplier._id});
         }),
-        catchError(() => of(ApiError()()))
+        catchError((e) => of(ApiError()(e)))
       ))
     )
   );
