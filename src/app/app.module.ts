@@ -21,13 +21,14 @@ import { SuppliersService } from './services/suppliers.service';
 import { EffectsModule } from '@ngrx/effects';
 import { StoreModule } from '@ngrx/store';
 import { rootStore } from './store';
-import { AsyncPipe } from '@angular/common';
+import { ReactiveFormsModule } from '@angular/forms';
 
 const routes: Routes = [
   { path: '', component: SuppliersListComponent },
+  { path: 'add', component: EditSupplierComponent },
+  { path: 'edit-supplier/:id', component: EditSupplierComponent },
   { path: 'about', component: AboutComponent },
-  { path: 'contacts', component: ContactsComponent },
-  { path: 'edit-supplier/:id', component: EditSupplierComponent }
+  { path: 'contacts', component: ContactsComponent }
 ];
 
 @NgModule({
@@ -55,6 +56,7 @@ const routes: Routes = [
     StoreModule.forRoot({
       SuppliersState: rootStore.SpReducer
     }),
+    ReactiveFormsModule
   ],
   providers: [
     { provide: 'BASE_API_URL', useValue: (<any>environment).local_rest_api_server },

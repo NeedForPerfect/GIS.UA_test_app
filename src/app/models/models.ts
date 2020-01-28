@@ -8,6 +8,6 @@ export interface Supplier {
     ggn: string;
     name: string;
     country: string;
-    roles: string;
+    roles: string[];
     sector: string;
 }

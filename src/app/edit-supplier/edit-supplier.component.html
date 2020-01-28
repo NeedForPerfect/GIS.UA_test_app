@@ -1,1 +1,12 @@
-<p>edit-supplier works!</p>
+<form [formGroup]="supplierForm" class="forms">
+    <input placeholder="ggn" formControlName="ggn">
+    <input placeholder="name" formControlName="name">
+    <input placeholder="country" formControlName="country">
+    <input placeholder="sector" formControlName="sector">
+    <div>
+        <input [formControl]="role"><button (click)="addRole()">Add</button>
+        <p *ngFor="let role of roles; let i = index">{{ role }} <button (click)="deleteRole(i)">Delete</button></p>
+    </div>
+</form>
+
+<button (click)="saveSupplier()">Save</button>
