@@ -27,7 +27,7 @@ export class SuppliersService {
   }
 
   editSupplier(id: string, supplier: Supplier) {
-    return <Observable<Supplier>>this.http.patch(`${this.baseUrl}/suppliers/${id}`, supplier);
+    return <Observable<Supplier>>this.http.put(`${this.baseUrl}/suppliers/${id}`, supplier);
   }
 
   deleteSupplier(id: string) {

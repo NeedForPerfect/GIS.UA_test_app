@@ -9,7 +9,9 @@ import {
   ApiGetSupplierDetail,
   ApiGetSupplierDetailSuccess,
   ApiEditSupplier,
-  ApiEditSupplierSuccess
+  ApiEditSupplierSuccess,
+  ApiDeleteSupplier,
+  ApiDeleteSupplierSuccess
 } from './actions';
 import { Supplier } from '../models/models';
 
@@ -31,25 +33,38 @@ export const suppliersReducer = createReducer(
   initialState,
   on(ApiGetSuppliers(), (state, action) => ({ ...state, loading: true })),
   on(ApiGetSuppliersSuccess(), (state, action) => ({ ...state, suppliers: action.suppliers, loading: false })),
+
   on(ApiAddSupplier(), (state, action) => ({ ...state, loading: true })),
   on(ApiAddSupplierSuccess(), (state, action) => {
     return { ...state, loading: false, selectedSupplier: action.supplier };
   }),
+
   on(ApiGetSupplierDetail(), (state, action) => {
     return { ...state, loading: true };
   }),
   on(ApiGetSupplierDetailSuccess(), (state, action) => {
     return { ...state, loading: false, selectedSupplier: action.supplier };
   }),
+
   on(ApiEditSupplier(), (state, action) => {
     return { ...state, loading: true };
   }),
   on(ApiEditSupplierSuccess(), (state, action) => {
     return { ...state, loading: false, selectedSupplier: action.supplier };
   }),
+
+  on(ApiDeleteSupplier(), (state, action) => {
+    return { ...state, loading: true };
+  }),
+  on(ApiDeleteSupplierSuccess(), (state: SuppliersState, action) => {
+    const withoutDeleted = state.suppliers.filter((s: Supplier) => {
+      return s._id !== action.id;
+    });
+    return { ...state, loading: false, suppliers: withoutDeleted };
+  }),
+
   on(StoreClrearSelectedSupplier(), (state, action) => ({ ...state, selectedSupplier: null })),
   on(ApiError(), (state, action) => {
-    console.log('I work');
     return { ...state, loading: false, error: action.error };
   })
 );

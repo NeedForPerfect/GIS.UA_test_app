@@ -102,6 +102,7 @@ export class EditSupplierComponent extends UnsubsribedComponent implements OnIni
   }
 
   saveSupplier() {
+    if (this.supplierForm.invalid) { this.supplierForm.markAllAsTouched(); return; }
     let supplier: Supplier = this.supplierForm.value;
     supplier.roles = this.roles;
     if (this.editMode) {

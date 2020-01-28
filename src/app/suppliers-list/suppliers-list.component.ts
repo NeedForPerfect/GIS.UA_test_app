@@ -46,7 +46,9 @@ export class SuppliersListComponent extends UnsubsribedComponent implements OnIn
     this.router.navigate(['edit-supplier', supllier._id]);
   }
 
-  deleteSupplier(supplier: Supplier) {}
+  deleteSupplier(supplier: Supplier) {
+    this.store.dispatch(rootStore.ApiDeleteSupplier()({id: supplier._id}));
+  }
 
   applyFilter(filterValue: string) {
     this.dataSource.filter = filterValue.trim().toLowerCase();

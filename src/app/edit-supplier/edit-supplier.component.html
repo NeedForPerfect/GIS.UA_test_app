@@ -14,7 +14,7 @@
         Filed can't be empty
       </span>
     </mat-form-field>
-  
+
     <mat-form-field class="example-full-width">
       <input placeholder="name" matInput formControlName="name" />
       <span class="color-red-1" *ngIf="isInvalid('name', 'required')">
@@ -27,14 +27,14 @@
         special symbols not alloved
       </span>
     </mat-form-field>
-  
+
     <mat-form-field class="example-full-width">
       <input matInput placeholder="country" formControlName="country" />
       <span class="color-red-1" *ngIf="isInvalid('country', 'required')">
         Filed can't be empty
       </span>
     </mat-form-field>
-  
+
     <mat-form-field class="example-full-width">
       <input matInput placeholder="sector" formControlName="sector" />
       <span class="color-red-1" *ngIf="isInvalid('sector', 'required')">
@@ -46,9 +46,10 @@
         <input matInput placeholder="Role" [formControl]="role" />
       </mat-form-field>
       <button (click)="addRole()" mat-stroked-button class="btn-add-role">Add</button>
-      <p class="text-20 color-gray-1">Roles: </p>
+      <p class="text-20 color-gray-1">Roles:</p>
       <div class="roles-wrapper">
-        <div class="text-gray-1" [@fadeInOut] *ngFor="let role of roles; let i = index">{{ role }}
+        <div class="text-gray-1" [@fadeInOut] *ngFor="let role of roles; let i = index">
+          {{ role }}
           <button mat-icon-button (click)="deleteRole(i)">
             <mat-icon class="color-red-1">delete</mat-icon>
           </button>
@@ -61,4 +62,3 @@
     </div>
   </form>
 </div>
-

@@ -24,6 +24,7 @@ import {MatIconModule} from '@angular/material/icon';
 import { UnsubsribedComponent } from './shared/unsubsribed/unsubsribed.component';
 import {MatProgressBarModule} from '@angular/material/progress-bar';
 import {MatInputModule} from '@angular/material/input';
+import { AcceptModalComponent } from './shared/accept-modal/accept-modal.component';
 
 const routes: Routes = [
   { path: '', component: SuppliersListComponent },
@@ -42,7 +43,8 @@ const routes: Routes = [
     MenuComponent,
     ContactsComponent,
     AboutComponent,
-    UnsubsribedComponent
+    UnsubsribedComponent,
+    AcceptModalComponent
   ],
   imports: [
     BrowserModule,
