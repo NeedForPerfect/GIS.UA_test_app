@@ -30,5 +30,8 @@ export class AcceptModalComponent implements OnInit {
   ok() {
     this.dialogRef.close(true);
   }
+  close() {
+    this.dialogRef.close(false);
+  }
 
 }
