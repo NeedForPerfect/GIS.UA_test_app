@@ -17,6 +17,9 @@
   </button>
 </div>
 
+<mat-form-field>
+  <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
+</mat-form-field>
 
 <mat-progress-bar *ngIf="loading" mode="indeterminate"></mat-progress-bar>
 <table mat-table matSort [dataSource]="dataSource" class="w-100 m-top-30 suppliers-list" [ngClass]="{'invisible': loading}">

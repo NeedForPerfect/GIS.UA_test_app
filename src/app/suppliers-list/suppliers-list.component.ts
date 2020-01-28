@@ -43,10 +43,13 @@ export class SuppliersListComponent extends UnsubsribedComponent implements OnIn
   }
 
   editSupplier(supllier: Supplier) {
-    console.log(supllier)
     this.router.navigate(['edit-supplier', supllier._id]);
   }
 
   deleteSupplier(supplier: Supplier) {}
+
+  applyFilter(filterValue: string) {
+    this.dataSource.filter = filterValue.trim().toLowerCase();
+  }
   
 }
