@@ -3,7 +3,7 @@ import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { of } from 'rxjs';
 import { map, mergeMap, catchError, tap } from 'rxjs/operators';
 import { SuppliersService } from '../services/suppliers.service';
-import { ApiGetSuppliersSuccess, ApiError, ApiGetSuppliers, ApiAddSupplier, ApiAddSupplierSuccess, ApiGetSupplierDetail, ApiGetSupplierDetailSuccess } from './actions';
+import { ApiGetSuppliersSuccess, ApiError, ApiGetSuppliers, ApiAddSupplier, ApiAddSupplierSuccess, ApiGetSupplierDetail, ApiGetSupplierDetailSuccess, ApiEditSupplier, ApiEditSupplierSuccess } from './actions';
 import { Store } from '@ngrx/store';
 import { SuppliersState } from './reducer';
 
@@ -17,7 +17,7 @@ export class SuppliersEffects {
       return this.suppliersService.getSuppliers()
       .pipe(
         map(suppliers => ApiGetSuppliersSuccess()({suppliers})),
-        catchError(() => of(ApiError()))
+        catchError(() => of(ApiError()()))
       )
     })
     )
@@ -30,7 +30,7 @@ export class SuppliersEffects {
         map(supplier => {
           return ApiAddSupplierSuccess()({supplier});
         }),
-        catchError(() => of(ApiError))
+        catchError(() => of(ApiError()()))
       )),
       tap((res) => { this.store.dispatch(ApiGetSuppliers()()) })
     )
@@ -43,7 +43,19 @@ export class SuppliersEffects {
         map(supplier => {
           return ApiGetSupplierDetailSuccess()({supplier});
         }),
-        catchError(() => of(ApiError))
+        catchError(() => of(ApiError()()))
+      ))
+    )
+  );
+
+  editSupplier$ = createEffect(() => this.actions$.pipe(
+    ofType(ApiEditSupplier()),
+    mergeMap((action) => this.suppliersService.editSupplier(action.id, action.supplier)
+      .pipe(
+        map(supplier => {
+          return ApiGetSuppliersSuccess()({supplier});
+        }),
+        catchError(() => of(ApiError()()))
       ))
     )
   );

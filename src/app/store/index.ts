@@ -5,7 +5,9 @@ import {
     ApiGetSupplierDetailSuccess,
     ApiAddSupplier,
     ApiEditSupplier,
+    ApiEditSupplierSuccess,
     ApiDeleteSupplier,
+    ApiDeleteSupplierSuccess,
     ApiError,
     StoreClrearSelectedSupplier
   } from './actions';
@@ -20,7 +22,9 @@ export const rootStore = {
     ApiGetSupplierDetailSuccess,
     ApiAddSupplier,
     ApiEditSupplier,
+    ApiEditSupplierSuccess,
     ApiDeleteSupplier,
+    ApiDeleteSupplierSuccess,
     ApiError,
     SuppliersEffects,
     SpReducer,

@@ -7,7 +7,9 @@ import {
   ApiAddSupplierSuccess,
   StoreClrearSelectedSupplier,
   ApiGetSupplierDetail,
-  ApiGetSupplierDetailSuccess
+  ApiGetSupplierDetailSuccess,
+  ApiEditSupplier,
+  ApiEditSupplierSuccess
 } from './actions';
 import { Supplier } from '../models/models';
 
@@ -15,7 +17,7 @@ export interface SuppliersState {
   error?: any;
   suppliers?: Supplier[];
   selectedSupplier?: Supplier;
-  loading?: boolean
+  loading?: boolean;
 }
 
 const initialState: SuppliersState = {
@@ -39,10 +41,19 @@ export const suppliersReducer = createReducer(
   on(ApiGetSupplierDetailSuccess(), (state, action) => {
     return { ...state, loading: false, selectedSupplier: action.supplier };
   }),
+  on(ApiEditSupplier(), (state, action) => {
+    return { ...state, loading: true };
+  }),
+  on(ApiEditSupplierSuccess(), (state, action) => {
+    return { ...state, loading: false, selectedSupplier: action.supplier };
+  }),
   on(StoreClrearSelectedSupplier(), (state, action) => ({ ...state, selectedSupplier: null })),
-  on(ApiError(), (state, action) => ({ ...state, loading: false, error: action.error })),
+  on(ApiError(), (state, action) => {
+    console.log('I work');
+    return { ...state, loading: false, error: action.error };
+  })
 );
 
 export function SpReducer(state: SuppliersState | undefined, action: Action) {
-    return suppliersReducer(state, action);
-  }
+  return suppliersReducer(state, action);
+}

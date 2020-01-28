@@ -102,13 +102,12 @@ export class EditSupplierComponent extends UnsubsribedComponent implements OnIni
   }
 
   saveSupplier() {
+    let supplier: Supplier = this.supplierForm.value;
+    supplier.roles = this.roles;
     if (this.editMode) {
-      let supplier: Supplier = this.supplierForm.value;
-      supplier.roles = this.roles;
-      //dispatch
+      const id = this.editedSupplier._id;
+      this.store.dispatch(rootStore.ApiEditSupplier()({ id, supplier }));
     } else {
-      let supplier: Supplier = this.supplierForm.value;
-      supplier.roles = this.roles;
       this.store.dispatch(rootStore.ApiAddSupplier()({ supplier }));
     }
   }
