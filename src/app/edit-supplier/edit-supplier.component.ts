@@ -52,6 +52,6 @@ export class EditSupplierComponent implements OnInit {
   saveSupplier() {
     let supplier: Supplier = this.supplierForm.value;
     supplier.roles = this.roles;
-    this.store.dispatch(rootStore.ApiAddSupplier({supplier}));
+    this.store.dispatch(rootStore.ApiAddSupplier()({supplier}));
   }
 }

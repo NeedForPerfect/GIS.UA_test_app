@@ -3,7 +3,6 @@ import { Supplier } from '../models/models';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatPaginator } from '@angular/material/paginator';
-import { SuppliersService } from '../services/suppliers.service';
 import { Store, select } from '@ngrx/store';
 import { rootStore } from '../store';
 import { SuppliersState } from '../store/reducer';
@@ -20,13 +19,18 @@ export class SuppliersListComponent implements OnInit {
 
   suppliers: Supplier[] = [];
 
+  loading;
+
   dataSource: MatTableDataSource<Supplier>;
 
   constructor(private store: Store<{ SuppliersState: SuppliersState }>) {}
 
   ngOnInit() {
-    this.store.select(rootStore.getLloading).subscribe((loading: boolean) => {});
-    this.store.pipe(select(rootStore.getSuppliers)).subscribe(rt => {
+    this.store.pipe(select(rootStore.getLloading())).subscribe((loading: boolean) => {
+      this.loading = loading;
+    });
+    this.store
+    this.store.pipe(select(rootStore.getSuppliers())).subscribe(rt => {
       if (rt) {
         this.suppliers = rt;
         this.dataSource = new MatTableDataSource(this.suppliers);

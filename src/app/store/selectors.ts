@@ -8,23 +8,30 @@ const getSelectedData = (state: SuppliersState): any => {
     return null;
   }
 };
-const getLoading = (state: SuppliersState): any => state.loading;
+const getLoading = (state: SuppliersState): any => {
+  if (state) return state.loading
+  else return null;
+};
 const getSelectedSupplier = (state: SuppliersState): any => {
   if (state.selectedSupplier)
     return state.selectedSupplier;
    else return null;
 };
 
-const getLloading = createSelector((state: any) => state.SuppliersState, getLoading);
+const _getLloading = createSelector((state: any) => state.SuppliersState, getLoading);
+function getLloading(): any { return _getLloading; }
 
-const getSuppliers = createSelector(
+const _getSuppliers = createSelector(
   (state: { SuppliersState: SuppliersState }) => state.SuppliersState,
   getSelectedData
 );
+function getSuppliers(): any { return _getSuppliers; }
 
-const getSupplier = createSelector(
+
+const _getSupplier = createSelector(
   (state: { SuppliersState: SuppliersState }) => state.SuppliersState,
   getSelectedSupplier
 );
+function getSupplier(): any { return _getSupplier; }
 
 export { getLloading, getSuppliers, getSupplier };

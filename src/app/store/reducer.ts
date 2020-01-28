@@ -24,13 +24,13 @@ const initialState: SuppliersState = {
 
 export const suppliersReducer = createReducer(
   initialState,
-  on(ApiGetSuppliers, (state, action) => ({ ...state, loading: true })),
-  on(ApiGetSuppliersSuccess, (state, action) => ({ ...state, suppliers: action.suppliers, loading: false })),
-  on(ApiAddSupplier, (state, action) => ({ ...state, loading: true })),
-  on(ApiAddSupplierSuccess, (state, action) => {
+  on(ApiGetSuppliers(), (state, action) => ({ ...state, loading: true })),
+  on(ApiGetSuppliersSuccess(), (state, action) => ({ ...state, suppliers: action.suppliers, loading: false })),
+  on(ApiAddSupplier(), (state, action) => ({ ...state, loading: true })),
+  on(ApiAddSupplierSuccess(), (state, action) => {
     return { ...state, loading: false, selectedSupplier: action.supplier };
-  }), // тепер get Supplier у нього нада зробити success
-  on(ApiError, (state, action) => ({ ...state, loading: false, error: action.error })),
+  }),
+  on(ApiError(), (state, action) => ({ ...state, loading: false, error: action.error })),
 );
 
 export function SpReducer(state: SuppliersState | undefined, action: Action) {

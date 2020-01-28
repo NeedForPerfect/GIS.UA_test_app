@@ -6,34 +6,33 @@ import { SuppliersService } from '../services/suppliers.service';
 import { ApiGetSuppliersSuccess, ApiError, ApiGetSuppliers, ApiAddSupplier, ApiAddSupplierSuccess } from './actions';
 import { Store } from '@ngrx/store';
 import { SuppliersState } from './reducer';
-import { rootStore } from '.';
 
  
 @Injectable()
 export class SuppliersEffects {
  
   loadSuppliers$ = createEffect(() => this.actions$.pipe(
-    ofType(ApiGetSuppliers),
+    ofType(ApiGetSuppliers()),
     mergeMap(() => {
       return this.suppliersService.getSuppliers()
       .pipe(
-        map(suppliers => ApiGetSuppliersSuccess({suppliers})),
-        catchError(() => of(ApiError))
+        map(suppliers => ApiGetSuppliersSuccess()({suppliers})),
+        catchError(() => of(ApiError()))
       )
     })
     )
   );
 
   addSupplier$ = createEffect(() => this.actions$.pipe(
-    ofType(ApiAddSupplier),
+    ofType(ApiAddSupplier()),
     mergeMap((action) => this.suppliersService.addSupplier(action.supplier)
       .pipe(
         map(supplier => {
-          return ApiAddSupplierSuccess({supplier});
+          return ApiAddSupplierSuccess()({supplier});
         }),
         catchError(() => of(ApiError))
       )),
-      tap((res) => { this.store.dispatch(ApiGetSuppliers()) })
+      tap((res) => { this.store.dispatch(ApiGetSuppliers()()) })
     )
   );
  
