@@ -105,6 +105,11 @@ span {
   justify-content: flex-end;
 }
 
+.flex-space-between {
+  display: flex;
+  justify-content: space-between;
+}
+
 .w-100 {
     width: 100%;
 }
@@ -131,4 +136,8 @@ span {
 
 .font-weight-bold {
   font-weight: 500;
+}
+
+.invisible {
+  visibility: hidden;
 }

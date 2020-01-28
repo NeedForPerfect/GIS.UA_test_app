@@ -4,8 +4,8 @@
 
 export const environment = {
   production: false,
-  local_rest_api_server: 'http://localhost:3000',
-  local_websocket_server: 'http://localhost:3001'
+  local_rest_api_server: 'https://gis-ua-suppliers-rest-server.herokuapp.com'
+  //local_rest_api_server: 'http://localhost:3000'
 };
 
 /*

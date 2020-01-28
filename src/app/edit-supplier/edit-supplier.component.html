@@ -1,1 +1,64 @@
-<p>edit-supplier works!</p>
+<div class="suppliers-header flex-center-vertical flex-left m-bottom-15">
+  <i class="material-icons color-gray-1 text-40 m-right-30">
+    insert_chart
+  </i>
+  <h2 class="color-gray-1">{{ title }}</h2>
+</div>
+<mat-progress-bar *ngIf="loading" mode="indeterminate"></mat-progress-bar>
+
+<div class="flex-center-horizontal">
+  <form [formGroup]="supplierForm" class="forms">
+    <mat-form-field class="example-full-width">
+      <input placeholder="ggn" matInput formControlName="ggn" />
+      <span class="color-red-1" *ngIf="isInvalid('ggn', 'required')">
+        Filed can't be empty
+      </span>
+    </mat-form-field>
+
+    <mat-form-field class="example-full-width">
+      <input placeholder="name" matInput formControlName="name" />
+      <span class="color-red-1" *ngIf="isInvalid('name', 'required')">
+        Filed can't be empty
+      </span>
+      <span class="color-red-1" *ngIf="isInvalid('name', 'nameTaken')">
+        User with this name already exist
+      </span>
+      <span class="color-red-1" *ngIf="isInvalid('name', 'pattern')">
+        special symbols not alloved
+      </span>
+    </mat-form-field>
+
+    <mat-form-field class="example-full-width">
+      <input matInput placeholder="country" formControlName="country" />
+      <span class="color-red-1" *ngIf="isInvalid('country', 'required')">
+        Filed can't be empty
+      </span>
+    </mat-form-field>
+
+    <mat-form-field class="example-full-width">
+      <input matInput placeholder="sector" formControlName="sector" />
+      <span class="color-red-1" *ngIf="isInvalid('sector', 'required')">
+        Filed can't be empty
+      </span>
+    </mat-form-field>
+    <div class="add-roles">
+      <mat-form-field class="example-full-width role-input">
+        <input matInput placeholder="Role" [formControl]="role" />
+      </mat-form-field>
+      <button (click)="addRole()" mat-stroked-button class="btn-add-role">Add</button>
+      <p class="text-20 color-gray-1">Roles:</p>
+      <div class="roles-wrapper">
+        <div class="text-gray-1" [@fadeInOut] *ngFor="let role of roles; let i = index">
+          {{ role }}
+          <button mat-icon-button (click)="deleteRole(i)">
+            <mat-icon class="color-red-1">delete</mat-icon>
+          </button>
+        </div>
+      </div>
+    </div>
+    <div class="m-v-20 flex-rigth w-100">
+      <button [routerLink]="['/']" class="backButton" mat-stroked-button>Back</button>
+      <button (click)="saveSupplier()" mat-stroked-button>{{ editMode ? 'Save Supplier' : 'Add Supplier' }}</button>
+    </div>
+  </form>
+</div>

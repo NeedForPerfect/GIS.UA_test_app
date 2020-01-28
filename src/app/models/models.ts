@@ -5,9 +5,10 @@ export interface menuItem {
 
 export interface Supplier {
     id?: string; // guid
+    _id?: string; // guid
     ggn: string;
     name: string;
     country: string;
-    roles: string;
+    roles: string[];
     sector: string;
 }
