@@ -4,7 +4,10 @@
   </i>
   <h2 class="color-gray-1">Suppliers</h2>
 </div>
-<div class="flex-rigth">
+<div class="flex-space-between button-block">
+  <mat-form-field>
+    <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter" />
+  </mat-form-field>
   <button mat-button routerLink="/add" class="btn-create-new m-bottom-15">
     <i class="material-icons color-gray-1">
       add
@@ -12,10 +15,6 @@
     <span class="color-gray-1">Create new</span>
   </button>
 </div>
-
-<mat-form-field>
-  <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter" />
-</mat-form-field>
 
 <mat-progress-bar *ngIf="loading" mode="indeterminate"></mat-progress-bar>
 <table

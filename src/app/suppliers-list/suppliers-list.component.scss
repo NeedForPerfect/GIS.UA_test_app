@@ -23,13 +23,17 @@
             }
         }
         td {
-            padding: 25px 0 25px 15px;
+            padding: 15px 0 15px 15px;
             transition: all ease-out 0.11s;
             user-select: none;
             cursor: pointer;
             font-size: 16px;
         }
     }
+}
+
+.button-block {
+    height: 50px;
 }
 
 .paginator-centered {
