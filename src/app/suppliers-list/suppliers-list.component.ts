@@ -7,6 +7,8 @@ import { Store, select } from '@ngrx/store';
 import { rootStore } from '../store';
 import { SuppliersState } from '../store/reducer';
 import { UnsubsribedComponent } from '../shared/unsubsribed/unsubsribed.component';
+import { ApiGetSupplierDetail } from '../store/actions';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-suppliers-list',
@@ -22,7 +24,7 @@ export class SuppliersListComponent extends UnsubsribedComponent implements OnIn
   loading;
   dataSource: MatTableDataSource<Supplier>;
 
-  constructor(private store: Store<{ SuppliersState: SuppliersState }>) {
+  constructor(private store: Store<{ SuppliersState: SuppliersState }>, private router: Router) {
     super();
   }
 
@@ -37,9 +39,13 @@ export class SuppliersListComponent extends UnsubsribedComponent implements OnIn
         this.dataSource.paginator = this.paginator;
       }
     }));
+
   }
 
-  editSupplier(suplliers: Supplier) {}
+  editSupplier(supllier: Supplier) {
+    console.log(supllier)
+    this.router.navigate(['edit-supplier', supllier._id]);
+  }
 
   deleteSupplier(supplier: Supplier) {}
   

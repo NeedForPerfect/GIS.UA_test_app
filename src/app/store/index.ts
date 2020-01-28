@@ -2,10 +2,12 @@ import {
     ApiGetSuppliers,
     ApiGetSuppliersSuccess,
     ApiGetSupplierDetail,
+    ApiGetSupplierDetailSuccess,
     ApiAddSupplier,
     ApiEditSupplier,
     ApiDeleteSupplier,
-    ApiError
+    ApiError,
+    StoreClrearSelectedSupplier
   } from './actions';
   import { SuppliersEffects } from './effects';
 import { SpReducer } from './reducer';
@@ -15,6 +17,7 @@ export const rootStore = {
     ApiGetSuppliers,
     ApiGetSuppliersSuccess,
     ApiGetSupplierDetail,
+    ApiGetSupplierDetailSuccess,
     ApiAddSupplier,
     ApiEditSupplier,
     ApiDeleteSupplier,
@@ -23,5 +26,6 @@ export const rootStore = {
     SpReducer,
     getSuppliers,
     getLloading,
-    getSupplier
+    getSupplier,
+    StoreClrearSelectedSupplier
 };

@@ -9,7 +9,6 @@ export class ValidateNameNotTaken {
     return (control: AbstractControl) => {
       return suppliersService.checkUniqueName(control.value).pipe(
         map(res => {
-            console.log('res', res);
           return !res ? null : { nameTaken: true };
         })
       );

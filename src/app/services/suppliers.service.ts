@@ -18,6 +18,10 @@ export class SuppliersService {
     return <Observable<Supplier[]>>this.http.get(`${this.baseUrl}/suppliers`);
   }
 
+  getSupplierById(id: string) {
+    return <Observable<Supplier[]>>this.http.get(`${this.baseUrl}/suppliers/${id}`);
+  }
+
   addSupplier(supplier: Supplier) {
     return <Observable<Supplier>>this.http.post(`${this.baseUrl}/suppliers`, supplier);
   }

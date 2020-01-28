@@ -4,7 +4,10 @@ import {
   ApiGetSuppliersSuccess,
   ApiAddSupplier,
   ApiError,
-  ApiAddSupplierSuccess
+  ApiAddSupplierSuccess,
+  StoreClrearSelectedSupplier,
+  ApiGetSupplierDetail,
+  ApiGetSupplierDetailSuccess
 } from './actions';
 import { Supplier } from '../models/models';
 
@@ -30,6 +33,13 @@ export const suppliersReducer = createReducer(
   on(ApiAddSupplierSuccess(), (state, action) => {
     return { ...state, loading: false, selectedSupplier: action.supplier };
   }),
+  on(ApiGetSupplierDetail(), (state, action) => {
+    return { ...state, loading: true };
+  }),
+  on(ApiGetSupplierDetailSuccess(), (state, action) => {
+    return { ...state, loading: false, selectedSupplier: action.supplier };
+  }),
+  on(StoreClrearSelectedSupplier(), (state, action) => ({ ...state, selectedSupplier: null })),
   on(ApiError(), (state, action) => ({ ...state, loading: false, error: action.error })),
 );
 

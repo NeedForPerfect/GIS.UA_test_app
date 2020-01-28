@@ -29,9 +29,29 @@
     padding: 5px;
 }
 
+.roles-wrapper {
+    max-width: 600px;
+    display: flex;
+    justify-content: flex-start;
+    align-content: flex-start;
+    flex-wrap: wrap;
+    div {
+        min-width: 120px;
+        background-color: map-get($color-map, gray-3);
+        border: 1px solid map-get($color-map, gray-1);
+        padding: 5px 5px 5px 15px;
+        border-radius: 20px;
+        margin: 5px;
+    }
+}
+
 mat-form-field {
     width: 600px;
     &.role-input {
         width: 520px;
     }
+}
+
+.backButton {
+    margin-right: 15px;
 }
