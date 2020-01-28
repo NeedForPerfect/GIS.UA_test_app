@@ -38,5 +38,9 @@ export class SuppliersListComponent extends UnsubsribedComponent implements OnIn
       }
     }));
   }
+
+  editSupplier(suplliers: Supplier) {}
+
+  deleteSupplier(supplier: Supplier) {}
   
 }

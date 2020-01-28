@@ -49,7 +49,7 @@
     <ng-container matColumnDef="button">
         <th mat-header-cell *matHeaderCellDef></th>
         <td mat-cell *matCellDef="let element">
-          <button mat-icon-button>
+          <button mat-icon-button (click)="deleteSupplier(element)">
             <mat-icon class="color-gray-1">delete</mat-icon>
           </button>
         </td>
