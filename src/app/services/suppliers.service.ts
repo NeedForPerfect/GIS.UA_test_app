@@ -22,4 +22,8 @@ export class SuppliersService {
     return <Observable<Supplier>>this.http.post(`${this.baseUrl}/suppliers`, supplier);
   }
 
+  checkUniqueName(name: string) {
+    return <Observable<boolean>>this.http.get(`${this.baseUrl}/suppliers/isExist/${name.trim()}`);
+  }
+
 }

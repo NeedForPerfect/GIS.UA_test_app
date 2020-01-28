@@ -5,15 +5,55 @@
   <h2 class="color-gray-1">{{ title }}</h2>
 </div>
 
-<form [formGroup]="supplierForm" class="forms">
-  <input placeholder="ggn" formControlName="ggn" />
-  <input placeholder="name" formControlName="name" />
-  <input placeholder="country" formControlName="country" />
-  <input placeholder="sector" formControlName="sector" />
-  <div>
-    <input [formControl]="role" /><button (click)="addRole()">Add</button>
-    <p *ngFor="let role of roles; let i = index">{{ role }} <button (click)="deleteRole(i)">Delete</button></p>
-  </div>
-</form>
+<div class="flex-center-horizontal">
+  <form [formGroup]="supplierForm" class="forms">
+    <mat-form-field class="example-full-width">
+      <input placeholder="ggn" matInput formControlName="ggn" />
+      <span class="color-red-1" *ngIf="isInvalid('ggn', 'required')">
+        Filed can't be empty
+      </span>
+    </mat-form-field>
+  
+    <mat-form-field class="example-full-width">
+      <input placeholder="name" matInput formControlName="name" />
+      <span class="color-red-1" *ngIf="isInvalid('name', 'required')">
+        Filed can't be empty
+      </span>
+      <span class="color-red-1" *ngIf="isInvalid('name', 'nameTaken')">
+        User with this name already exist
+      </span>
+      <span class="color-red-1" *ngIf="isInvalid('name', 'pattern')">
+        special symbols not alloved
+      </span>
+    </mat-form-field>
+  
+    <mat-form-field class="example-full-width">
+      <input matInput placeholder="country" formControlName="country" />
+      <span class="color-red-1" *ngIf="isInvalid('country', 'required')">
+        Filed can't be empty
+      </span>
+    </mat-form-field>
+  
+    <mat-form-field class="example-full-width">
+      <input matInput placeholder="sector" formControlName="sector" />
+      <span class="color-red-1" *ngIf="isInvalid('sector', 'required')">
+        Filed can't be empty
+      </span>
+    </mat-form-field>
+    <div class="add-roles">
+      <mat-form-field class="example-full-width role-input">
+        <input matInput placeholder="Role" [formControl]="role" />
+      </mat-form-field>
+      <button (click)="addRole()" mat-stroked-button class="btn-add-role">Add</button>
+      <p class="text-gray-1" *ngFor="let role of roles; let i = index">{{ role }}
+        <button mat-icon-button (click)="deleteRole(role)">
+          <mat-icon class="color-red-1">delete</mat-icon>
+        </button>
+      </p>
+    </div>
+    <div class="m-v-20 flex-rigth w-100">
+      <button (click)="saveSupplier()" mat-stroked-button>Save</button>
+    </div>
+  </form>
+</div>
 
-<button (click)="saveSupplier()">Save</button>

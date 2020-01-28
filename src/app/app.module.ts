@@ -23,6 +23,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import {MatIconModule} from '@angular/material/icon';
 import { UnsubsribedComponent } from './shared/unsubsribed/unsubsribed.component';
 import {MatProgressBarModule} from '@angular/material/progress-bar';
+import {MatInputModule} from '@angular/material/input';
 
 const routes: Routes = [
   { path: '', component: SuppliersListComponent },
@@ -58,7 +59,8 @@ const routes: Routes = [
       SuppliersState: rootStore.SpReducer
     }),
     ReactiveFormsModule,
-    MatProgressBarModule
+    MatProgressBarModule,
+    MatInputModule
   ],
   providers: [
     { provide: 'BASE_API_URL', useValue: (<any>environment).local_rest_api_server },
