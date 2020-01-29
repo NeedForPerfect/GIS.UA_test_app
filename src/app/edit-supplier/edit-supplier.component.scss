@@ -60,10 +60,16 @@ mat-form-field {
     @media (max-width: 640px) {
         width: 400px;
     }
+    @media (max-width: 380px) {
+        width: 200px;
+    }
     &.role-input {
         width: 520px;
         @media (max-width: 640px) {
             width: 400px;
+        }
+        @media (max-width: 380px) {
+            width: 200px;
         }
     }
 }
