@@ -64,5 +64,11 @@ export class SuppliersListComponent extends UnsubsribedComponent implements OnIn
   applyFilter(filterValue: string) {
     this.dataSource.filter = filterValue.trim().toLowerCase();
   }
+
+   get isSmallScreen() {
+    if (window.screen.width < 400) {
+      return true;
+    }
+   }
   
 }

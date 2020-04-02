@@ -1,4 +1,9 @@
+
 .content-wrapper {
     width: 70%;
     min-height: 650px;
+    @media (max-width: 1366px) {
+        width: 80%;
+        padding: 15px;
+    }
 }
